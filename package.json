@@ -1,0 +1,11 @@
+{
+    "name": "twilio-lambda-function",
+    "version": "1.0.0",
+    "description": "AWS Lambda function to send SMS messages using Twilio",
+    "main": "index.js",
+    "dependencies": {
+      "aws-sdk": "^2.1044.0",
+      "twilio": "^3.80.0"
+    }
+  }
+  
