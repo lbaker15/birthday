@@ -1,0 +1,16 @@
+@tailwind components;
+@layer components {
+	.wrapper {
+		@apply max-w-[1200px] w-11/12 mx-auto;
+	}
+
+	.button--blue {
+		@apply block w-fit transition-all duration-500 hover:bg-white  hover:text-offBlack   rounded-md py-2 px-4 font-medium text-white bg-blue border-transparent;
+	}
+	.button--yellow {
+		@apply block w-fit transition-all duration-500 hover:bg-white  hover:text-offBlack   rounded-full font-light py-2 px-4  text-offBlack bg-yellow border-transparent;
+	}
+	.button--pink {
+		@apply block w-fit transition-all duration-500 hover:bg-white  hover:text-offBlack   rounded-full font-light py-2 px-4  text-offBlack bg-pink border-transparent;
+	}
+}
