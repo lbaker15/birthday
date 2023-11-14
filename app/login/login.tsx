@@ -64,7 +64,7 @@ export const Login = () => {
 				</button>
 			</div>
 
-			<div className="md:w-1/2 relative">
+			<div className="md:w-1/2 relative max-h-screen">
 				<Image
 					width={1400}
 					height={1400}
