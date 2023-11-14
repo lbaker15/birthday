@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import EmojiInput from "./emojiInput";
 import { cookies } from "./cookies";
 import { redirect } from "next/navigation";
+import action from "../scheduled/action";
 
 export default function Page() {
 	const [state, setState] = useState<any>({});
@@ -38,6 +39,7 @@ export default function Page() {
 			const data = await response.json();
 			if (data.executionArn) {
 				setAlert("Message scheduled!");
+				action();
 			}
 		} else {
 			console.log("not logged in");
