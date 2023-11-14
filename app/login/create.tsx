@@ -1,5 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import Image1 from "../../images/login.jpg";
 
 export const Create = () => {
 	const [alert, setAlert] = useState("");
@@ -66,6 +68,15 @@ export const Create = () => {
 				>
 					Submit
 				</button>
+			</div>
+			<div className="md:w-1/2 relative">
+				<Image
+					width={1400}
+					height={1400}
+					alt="decorative image"
+					className="w-full h-full object-cover"
+					src={Image1.src}
+				/>
 			</div>
 		</div>
 	);

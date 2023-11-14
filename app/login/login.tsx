@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Image1 from "../../images/login.jpg";
 
 export const Login = () => {
 	const router = useRouter();
@@ -62,7 +64,15 @@ export const Login = () => {
 				</button>
 			</div>
 
-			<div className="md:w-1/2"></div>
+			<div className="md:w-1/2 relative">
+				<Image
+					width={1400}
+					height={1400}
+					alt="decorative image"
+					className="w-full h-full object-cover"
+					src={Image1.src}
+				/>
+			</div>
 		</div>
 	);
 };
