@@ -11,6 +11,8 @@
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
+    "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
     "aws-sdk": "^2.1488.0",
     "emoji-mart": "^5.5.2",
     "mongoose": "^8.0.0",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../css/base.css";
-import Link from "next/link";
+import { Header } from "./header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +18,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<header className="fixed top-0 w-full left-0 py-3 px-2">
-					<div className="wrapper flex gap-4 justify-end font-workSans font-light text-white">
-						<Link className="shrink-0 button--yellow" href="/dashboard">
-							Dashboard
-						</Link>
-						<Link className="shrink-0 button--yellow" href="/scheduled">
-							View All Messages
-						</Link>
-					</div>
-				</header>
+				<Header />
 				{children}
 			</body>
 		</html>

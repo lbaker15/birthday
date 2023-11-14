@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmojiInput from "./emojiInput";
 import { cookies } from "./cookies";
 import { redirect } from "next/navigation";
@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 export default function Page() {
 	const [state, setState] = useState<any>({});
 	const [alert, setAlert] = useState("");
-	const id = cookies("user_id");
 
 	function toISODateString(dateStr: string, timeStr: string) {
 		const dateTimeStr = `${dateStr}T${timeStr}:00.000Z`;
@@ -17,6 +16,7 @@ export default function Page() {
 	}
 
 	const handleSubmit = async (event: any) => {
+		const id = cookies("user_id");
 		// const date = '2023-11-07T12:19:00.000Z';
 		const dateSend = toISODateString(state.date, state.time);
 
@@ -48,10 +48,12 @@ export default function Page() {
 		const { value, name } = e.target;
 		setState({ ...state, [name]: value });
 	};
-
-	if (!id) {
-		redirect("/login");
-	}
+	useEffect(() => {
+		const id = cookies("user_id");
+		if (!id) {
+			redirect("/login");
+		}
+	}, []);
 
 	return (
 		<div className="bg-offBlack min-h-screen font-workSans">
