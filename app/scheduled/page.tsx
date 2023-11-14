@@ -18,7 +18,15 @@ export default async function Page({}: any) {
 					return <Inner index={index} executionArn={executionArn} />;
 				})
 			) : (
-				<div className="font-light text-white text-xl">Loading...</div>
+				<>
+					{data && !data.user ? (
+						<div className="font-light text-white text-xl">
+							No messages scheduled yet...
+						</div>
+					) : (
+						<div className="font-light text-white text-xl">Loading...</div>
+					)}
+				</>
 			)}
 		</>
 	);
