@@ -3,14 +3,14 @@ import { Inner } from "./inner";
 
 export default async function Page({}: any) {
 	const id: any = cookies().get("user_id");
-
+ 
 	const res = await fetch(`${process.env.SITE_URL}/api/get-all `, {
 		method: "POST",
 		body: JSON.stringify({ id: id.value }),
 		cache: "no-store",
 	});
 	const data = await res.json();
-
+ 
 	return (
 		<>
 			{data.user ? (

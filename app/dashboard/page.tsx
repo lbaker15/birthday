@@ -22,27 +22,40 @@ export default function Page() {
 		const dateSend = toISODateString(state.date, state.time);
 
 		if (id) {
-			const response = await fetch("/api/step", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					date: dateSend,
-					user_id: id,
-					message: state.text,
-					subject: "",
-					phone: "+447593368294",
-				}),
-			});
+			try {
+				const response = await fetch("/api/step", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						date: dateSend,
+						user_id: id,
+						message: state.text,
+						subject: "",
+						phone: "+447593368294",
+					}),
+				});
 
-			const data = await response.json();
-			if (data.executionArn) {
-				setAlert("Message scheduled!");
-				action();
+				if (!response.ok) {
+					throw new Error(response.statusText, { cause: response.status });
+				}
+
+				const data = await response.json();
+				if (data.executionArn) {
+					setAlert("Message scheduled!");
+					action();
+				}
+			} catch (err) {
+				const error = err as any;
+				if (error.cause && error.cause == 403) {
+					setAlert(
+						"You have reached your limit on number of messages scheduled"
+					);
+				}
 			}
 		} else {
-			console.log("not logged in");
+			setAlert("Please login before scheduling");
 		}
 	};
 

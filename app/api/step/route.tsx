@@ -19,13 +19,7 @@ const saveExecutionToUser = async (user_id: any, executionArn: any) => {
 };
 
 export async function POST(request: NextRequest) {
-	const stepfunctions = new AWS.StepFunctions({
-		region: "eu-west-2",
-		credentials: {
-			accessKeyId: String(process.env.ACCESS),
-			secretAccessKey: String(process.env.SECRET),
-		},
-	});
+	// find user & check if have more than 3 arns
 
 	const body = await request.json();
 	const date = body.date;
@@ -35,7 +29,29 @@ export async function POST(request: NextRequest) {
 	const subject = body.subject;
 	const phone = body.phone;
 	const user_id = body.user_id;
+	const user = await User.findById(user_id);
+	if (!user || user.executionArn.length > 1) {
+		return new Response(
+			JSON.stringify({
+				message: "Failed to start Step Function execution",
+				error: "You have reached your limit",
+			}),
+			{
+				status: 403,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}
+		);
+	}
 
+	const stepfunctions = new AWS.StepFunctions({
+		region: "eu-west-2",
+		credentials: {
+			accessKeyId: String(process.env.ACCESS),
+			secretAccessKey: String(process.env.SECRET),
+		},
+	});
 	const params = {
 		stateMachineArn:
 			"arn:aws:states:eu-west-2:296670793626:stateMachine:MyStateMachine-u29iz1idc",
